@@ -1,3 +1,11 @@
 <div id='container'>
-  <!-- Your html here -->
+  <input class='text' type='text' ng-model="filter" name='filter'>
+  <input class='text' type='text' ng-model="url" name='url'>
+  <div class='link' ng-repeat="shortly in data.links | filter: filterFn | orderBy:'-visits'">
+    <img src='/assets/redirect_icon.png' />
+    <div class='visits'><span class='count'>{{shortly.visits}}</span>Visits</div>
+    <div class='title'>{{shortly.title}}</div>
+    <div class='original'>{{shortly.url}}</div>
+    <a href='{{shortly.baseUrl}}/{{shortly.code}}'>{{shortly.baseUrl}}/{{shortly.code}}</a>
+  </div>
 </div>

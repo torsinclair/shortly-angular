@@ -1,7 +1,8 @@
 <div id='signin'>
   <h1>signin</h1>
+  <div ng-show="signFailed">Username and/or password is empty.  Please try again.</div>
   <form name="signinForm" ng-submit='signin()'>
-    <input type='text'ng-model='user.username'>
+    <input type="text" ng-model='user.username'>
     <input type="password" ng-model='user.password'>
     <button>signin</button>
   </form>

@@ -5,8 +5,13 @@ angular.module('shortly.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
+  $scope.signFailed = false;
 
   $scope.signin = function () {
+    if (!$scope.user.username || !$scope.user.password) {
+      $scope.signFailed = true;
+      return;
+    }
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.shortly', token);
@@ -18,6 +23,11 @@ angular.module('shortly.auth', [])
   };
 
   $scope.signup = function () {
+    if (!$scope.user.username || !$scope.user.password) {
+      $scope.signFailed = true;
+      console.log('here');
+      return;
+    }
     Auth.signup($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.shortly', token);

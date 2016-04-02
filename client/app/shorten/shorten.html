@@ -1,12 +1,13 @@
-<div id='container' ng-controller="ShortenController">
+<div id='container'>
   <form ng-submit="addLink()">
-      <input class='text' type='text' ng-model="url" name='url'>
+      <input class='text' type='text' ng-model="url" ng-change="urlChange()" name='url'>
       <input type='submit' value='Shorten'>
   </form>
-  <img class='spinner' src='/assets/spiffygif_46x46.gif'>
-  <div class='message'></div>
+  <img class='spinner' ng-show="enSpinner" src='/assets/spiffygif_46x46.gif'>
+  <div class='message'>{{errMsg}}</div>
   <hr/>
-  <div class='info' ng-repeat="shortly in shortlies track by $index">
+  <div class='link' ng-repeat="shortly in shortlies track by $index">
+    <img src='/assets/redirect_icon.png' />
     <div class='visits'><span class='count'>{{shortly.visits}}</span>Visits</div>
     <div class='title'>{{shortly.title}}</div>
     <div class='original'>{{shortly.url}}</div>
